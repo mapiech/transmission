@@ -1,11 +1,11 @@
 # Change these
-server '192.168.1.200', port: 2222, roles: [:web, :app, :db], primary: true
+server '192.168.0.15', port: 2222, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:mapiech/transmission.git'
 set :application,     'transmission'
 set :user,            'salat'
-set :puma_threads,    [4, 16]
-set :puma_workers,    0
+set :puma_threads,    [1, 4]
+set :puma_workers,    4
 
 # Don't change these unless you know what you're doing
 set :pty,             true
