@@ -1,0 +1,27 @@
+- @congregation.prepare
+
+= simple_form_for [:admin, @congregation] do |form|
+  .row
+    .col.xs-12.col-sm-6
+
+      = form.input :name, autofocus: true, input_html: { id: 'user-full-name-edit-input' }
+      - unless @congregation.persisted?
+        = form.input :password
+      = form.input :default_ip, hint: "Twoje IP: #{request.remote_ip}"
+      = form.input :default_day, collection: [['Poniedziałek', 1], ['Wtorek', 2], ['Środa', 3], ['Czwartek', 4], ['Piątek', 5]], include_blank: false
+      = form.input :default_weekend_time, collection: (8..19).to_a, include_blank: false
+
+      = form.input :has_phone_transmission, input_html: { class: 'checkbox-bind-area', data: { bind_area: '#phone-transmission-form'}}
+
+      #phone-transmission-form.checkbox-area{ style: 'display: none;' }
+        %h2.checkbox-area-title Ustawienia Transmisji Telefonicznej
+        = form.fields_for :phone_transmission do |phone_transmission_form|
+          = phone_transmission_form.input :internal_phone_number
+          = phone_transmission_form.input :sip_phone_number
+
+
+      .row.form-actions.text-center
+        %hr
+        = button_tag class: 'btn btn-danger btn-md', type: 'submit' do
+          %span.button-label Zapisz
+          = glyph("circle-arrow-right")

@@ -1,0 +1,33 @@
+- content_for :top_navigation do
+  = render 'admin/base/top_navigation'
+
+.top-page-actions.clearfix
+  .pull-right
+    = link_to new_admin_congregation_path, class: 'btn btn-danger btn-md' do
+      = glyph(:plus)
+      Dodaj
+
+- if @congregations.any?
+  %table.table
+    %tr
+      %th Nazwa
+      %th
+      %th
+      %th
+    - @congregations.each do |congregation|
+      %tr
+        %td= congregation.name
+        %td
+        %td
+        %td
+
+          = link_to edit_admin_congregation_path(congregation), class: 'btn btn-primary btn-sm' do
+            = glyph(:edit)
+            edycja
+
+          = link_to admin_congregation_path(congregation), class: 'btn btn-danger btn-sm safe-delete ml-15',
+            data: { delete_text_info: "Ta akcja usunie zbór '#{congregation.name}' dostępu do transmisji. Potwierdź."}  do
+            = glyph(:trash)
+            usuń
+- else
+  %h1.text-center.no-resources Nie został dodany jeszcze żaden zbór.

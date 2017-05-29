@@ -1,0 +1,67 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+body {
+  padding-top: 70px;
+}
+
+footer {
+  padding: 100px 0 20px 0;
+  text-align: center;
+}
+
+.button-label {
+  margin: 0 10px;
+}
+
+.top-page-actions {
+  padding: 10px 0;
+  margin: 0 0 30px 0;
+}
+
+h1 {
+
+  &.page-title {
+    margin: 10px 0 20px 0;
+    padding: 0;
+    font-size: 22px;
+  }
+
+  &.no-resources {
+    margin: 10px 0 20px 0;
+    padding: 0;
+    font-size: 26px;
+    color: #999;
+  }
+
+}
+
+h2 {
+
+  &.map-key-settings {
+    margin: 40px 0 15px 0;
+    padding: 0;
+    font-size: 18px;
+  }
+
+}
+
+.checkbox-area {
+  margin: 15px 0 15px 30px;
+  padding: 10px 0;
+  h2.checkbox-area-title {
+    margin: 0 0 15px 0;
+    padding: 0;
+    font-size: 16px;
+    color: #999;
+  }
+}
+
+.ml-15 { margin-left: 15px; }
+
+.user-key-maps-entry-form {
+  margin: 15px 0 15px 30px;
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}

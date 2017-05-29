@@ -1,0 +1,2 @@
+module Congregation::TransmissionHelper
+end

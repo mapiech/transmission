@@ -1,0 +1,13 @@
+#safe-delete-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"Zamknij</span></button>
+        %h4.modal-title Potwierdzenie
+      .modal-body
+        %p.text-danger
+          %strong.delete-item-info
+      .modal-footer
+        = link_to 'Anuluj', '', class: 'btn btn-default', data: { dismiss: 'modal' }
+        = link_to 'Potwierdzam', '', class: 'btn btn-danger real-delete', method: 'delete'
+

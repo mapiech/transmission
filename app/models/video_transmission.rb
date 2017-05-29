@@ -1,0 +1,2 @@
+class VideoTransmission < ApplicationRecord
+end

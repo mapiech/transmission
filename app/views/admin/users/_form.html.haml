@@ -1,0 +1,38 @@
+- @user.prepare
+
+= simple_form_for [:admin, @user] do |form|
+  .row
+    .col.xs-12.col-sm-6
+      = form.input :full_name, autofocus: true, input_html: { id: 'user-full-name-edit-input' }
+      = form.input :congregation_id, collection: Congregation.all
+      = form.input :email
+      = form.input :admin
+      = form.input :allow_join_to_any
+
+      = form.fields_for :phone do |phone_form|
+
+        = phone_form.input :id, as: :hidden
+        = phone_form.input :phone_number, input_html: { maxlength: 9, minlength: 3, style: 'width: 120px; '}
+
+        %h2.map-key-settings Ustawienia kliknięć klawiatury telefonu:
+        = phone_form.fields_for :phone_key_maps do |phone_key_map_form|
+          .user-key-maps-entry-form.clearfix
+            = phone_key_map_form.input :id, as: :hidden
+            = phone_key_map_form.input :digit, as: :hidden
+            = phone_key_map_form.input :full_name, label: "Gdy '#{phone_key_map_form.object.digit}' zgłasza się:", input_html: { class: 'user-key-maps-full-name-edit-input' }
+
+            %p.users-key-maps-actions
+
+              - if phone_key_map_form.index == 0
+                = link_to '#', class: 'btn btn-xs btn-primary copy-user-full-name' do
+                  = glyph('paste')
+                  Wstaw Właściciela Numeru
+
+              = link_to '#', class: 'btn btn-xs btn-danger pull-right clear-map-key-name' do
+                = glyph(:remove)
+
+      .row.form-actions.text-center
+        %hr
+        = button_tag class: 'btn btn-danger btn-md', type: 'submit' do
+          %span.button-label Zapisz
+          = glyph("circle-arrow-right")

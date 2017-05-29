@@ -1,0 +1,9 @@
+%li{ class: (@menu == :congregations) ? 'active' : nil }
+  = link_to admin_congregations_path do
+    = glyph('phone-alt')
+    Zbory
+
+%li{ class: (@menu == :users) ? 'active' : nil }
+  = link_to admin_users_path do
+    = glyph('user')
+    Bracia/Siostry

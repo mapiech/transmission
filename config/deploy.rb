@@ -6,6 +6,8 @@ set :application,     'transmission'
 set :user,            'salat'
 set :puma_threads,    [1, 4]
 set :puma_workers,    4
+set :puma_active_record_establish_connection, true
+set :puma_init_active_record, true
 
 # Don't change these unless you know what you're doing
 set :pty,             true
