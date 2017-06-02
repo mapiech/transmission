@@ -1,0 +1,47 @@
+<script type="text/x-tmpl" id="channel-template">
+    <li id="phone-transmission-user-${user_id}" data-admin="${admin}" data-caller-id="" class="clearfix {{if admin}}admin{{/if}}">
+
+        {{if !admin}}
+          <p class="actions pull-right">
+            <%= link_to image_tag('sound-icon.png', height: 20), CGI::unescape(congregation_unmute_path(caller_id: '${caller_id}')), title: 'Komentarz', class: 'mute-action unmute' %>
+            <%= link_to CGI::unescape(congregation_kick_path(caller_id: '${caller_id}')), title: 'Usuń z transmisji', class: 'kick-action kick text-danger soft-delete soft-delete-remote', data: { message: "Ta akcja usunie użytkownika '${full_name}' z bieżącej transmisji." } do %>
+              <%= glyph(:trash) %>
+            <% end %>
+          </p>
+        {{/if}}
+
+        <span class="user-name">${full_name}</span>
+        {{if admin}}
+          <%= image_tag('animated-sound-icon.gif', height: 26, class: 'admin-play') %>
+        {{/if}}
+
+        {{if !admin}}
+        <br/>
+        <span class="users-count" data-users-count="${users_count}" id="phone-transmission-users-count-${user_id}">(${users_count_text})</span>
+        {{/if}}
+        <p class="comments clearfix"></p>
+
+
+    </li>
+</script>
+
+
+<script type="text/x-tmpl" id="mute-area-template">
+  <div class="mute-area text-center">
+    <p class="caller-id">
+      ${caller_id}
+      <%= image_tag('animated-sound-icon.gif', height: 26) %>
+    </p>
+    <p class="mute">
+      <%= link_to 'STOP', CGI::unescape(congregation_mute_path(caller_id: '${caller_id}')), class: 'mute-action mute btn btn-lg btn-danger' %>
+    </p>
+  </div>
+</script>
+
+<script type="text/x-tmpl" id="comment-template">
+  <%= link_to(CGI::unescape(congregation_unmute_path(caller_id: '${caller_id}')), id: "phone-transmission-user-${user_id}-comment-digit-${digit}", data: { digit: '${digit}' }, title: 'Komentarz', class: 'mute-action unmute text-danger comment-entry') do %>
+    <%= image_tag('hand.png', height: 20) %>
+    ${comment_full_name}
+  <% end %>
+</script>
+

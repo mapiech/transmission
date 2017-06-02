@@ -27,6 +27,13 @@ gem 'simple'
 gem 'simple_form'
 gem 'sidekiq'
 gem 'pg'
+gem 'ruby_ami'
+gem 'daemons'
+gem 'asterisk-ari-client'
+gem 'net-telnet'
+gem 'ruby-asterisk'
+gem 'safe_parser', require: 'safe_parser'
+gem 'draper'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,13 +1,14 @@
-#safe-delete-modal.modal.fade
+#soft-delete-modal.modal.fade{ role: 'dialog' }
   .modal-dialog
     .modal-content
+
       .modal-header
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"Zamknij</span></button>
         %h4.modal-title Potwierdzenie
+
       .modal-body
-        %p.text-danger
-          %strong.delete-item-info
+        %p.text-danger.message.text-center
+
       .modal-footer
-        = link_to 'Anuluj', '', class: 'btn btn-default', data: { dismiss: 'modal' }
-        = link_to 'Potwierdzam', '', class: 'btn btn-danger real-delete', method: 'delete'
+        = link_to 'Potwierdź', '', class: 'btn btn-danger btn-sm real-delete', method: 'delete', data: { link_text: 'Potwierdź', sending_text: 'Poczekaj' }
 

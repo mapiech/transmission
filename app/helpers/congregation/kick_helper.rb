@@ -1,0 +1,2 @@
+module Congregation::KickHelper
+end

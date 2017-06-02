@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529110141) do
+ActiveRecord::Schema.define(version: 20170531135044) do
 
   create_table "admins", force: :cascade do |t|
     t.string "full_name"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170529110141) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "default_ip"
-    t.string "default_day"
+    t.integer "default_day"
     t.integer "default_weekend_time"
     t.index ["email"], name: "index_congregations_on_email", unique: true
   end
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20170529110141) do
   create_table "phone_key_maps", force: :cascade do |t|
     t.integer "phone_id"
     t.integer "digit"
-    t.string "full_name"
+    t.string "full_name", default: "", null: false
   end
 
   create_table "phone_transmissions", force: :cascade do |t|
@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(version: 20170529110141) do
 
   create_table "users", force: :cascade do |t|
     t.string "full_name"
-    t.string "email"
-    t.boolean "admin"
-    t.boolean "allow_join_to_any"
+    t.string "email", default: "", null: false
+    t.boolean "admin", default: false, null: false
+    t.boolean "allow_join_to_any", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "congregation_id"

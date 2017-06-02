@@ -1,0 +1,2 @@
+module Asterisk::SyncHelper
+end

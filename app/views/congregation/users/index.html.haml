@@ -6,6 +6,7 @@
     = link_to new_congregation_user_path, class: 'btn btn-danger btn-md' do
       = glyph(:plus)
       Dodaj
+
 - if @users.any?
   %table.table
     %tr
@@ -24,8 +25,8 @@
             = glyph(:edit)
             edycja
 
-          = link_to congregation_user_path(user), class: 'btn btn-danger btn-sm safe-delete ml-15',
-            data: { delete_text_info: "Ta akcja pozbawi użytkownika '#{user.full_name}' dostępu do transmisji. Potwierdź."}  do
+          = link_to congregation_user_path(user), class: 'btn btn-danger btn-sm soft-delete ml-15',
+            data: { message: "Ta akcja pozbawi użytkownika '#{user.full_name}' dostępu do transmisji. Potwierdź."}  do
             = glyph(:trash)
             usuń
 - else

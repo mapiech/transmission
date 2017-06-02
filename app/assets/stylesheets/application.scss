@@ -1,7 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
 body {
   padding-top: 70px;
 }
@@ -64,4 +63,102 @@ h2 {
   margin: 15px 0 15px 30px;
   padding: 10px 0;
   border-bottom: 1px solid #333;
+}
+
+#phone-transmission {
+
+  position: relative;
+
+  listy-style: none;
+  margin: 20px 0;
+  padding: 0;
+
+  li {
+
+    position: relative;
+
+    background: #f7f9f5;
+    list-style: none;
+    padding: 15px 20px;
+
+    margin: 20px 0;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-height: 60px;
+
+    .user-name {
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .users-count {
+      font-size: 14px;
+      color: #999;
+    }
+
+    .actions {
+      margin: 0;
+      vertical-align: bottom;
+      a {
+        vertical-align: bottom;
+        img {
+          vertical-align: bottom;
+        }
+        margin-left: 10px;
+
+        &.kick {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .comments {
+
+      position: relative;
+      margin: 5px 0;
+
+      .comment-entry {
+        display: block;
+        float: left;
+        padding: 5px;
+        border: 1px solid #999999;
+        border-radius: 3px;
+        margin-right: 5px;
+        background: #ffffff;
+        text-decoration: none;
+        &.disabled {
+          text-decoration: line-through;
+          cursor: default;
+        }
+      }
+
+    }
+
+
+  }
+}
+
+.mute-area {
+  p.caller-id {
+    font-size: 22px;
+  }
+  p.mute {
+    margin: 15px 0;
+  }
+}
+
+.header-action {
+  padding-top: 10px;
+  a {
+    font-size: 20px;
+  }
+}
+
+#comment-modal {
+  .modal-body {
+    background: #f7f9f5;
+  }
 }

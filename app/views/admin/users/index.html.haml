@@ -24,8 +24,8 @@
             = glyph(:edit)
             edycja
 
-          = link_to admin_user_path(user), class: 'btn btn-danger btn-sm safe-delete ml-15',
-            data: { delete_text_info: "Ta akcja pozbawi użytkownika '#{user.full_name}' dostępu do transmisji. Potwierdź."}  do
+          = link_to admin_user_path(user), class: 'btn btn-danger btn-sm soft-delete ml-15',
+            data: { message: "Ta akcja pozbawi użytkownika '#{user.full_name}' dostępu do transmisji. Potwierdź."}  do
             = glyph(:trash)
             usuń
 - else

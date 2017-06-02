@@ -13,6 +13,8 @@ class Congregation < ApplicationRecord
 
   before_validation :generate_email, on: [ :create ]
 
+  delegate :internal_phone_number, :sip_phone_number, to: :phone_transmission
+
   class << self
 
     def guess_to_sign_in(current_ip)
@@ -25,7 +27,7 @@ class Congregation < ApplicationRecord
       if time_now.on_weekend?
         congregations.min{|first, second| (first.default_weekend_time - time_now_index).abs <=> (second.default_weekend_time - time_now_index).abs }
       else
-        congregations.min{|first, second| (first.default_day.to_i - time_now.wday).abs <=> (second.default_day.to_i - time_now.wday).abs }
+        congregations.min{|first, second| (first.default_day - time_now.wday).abs <=> (second.default_day - time_now.wday).abs }
       end
     end
 

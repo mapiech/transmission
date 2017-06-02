@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+RVM=/home/marek/.rvm/environments/ruby-2.4.0
+DIR=/home/marek/RubymineProjects/transmission/asterisk-sync
+PID=$SCRIPT/server.rb.pid
+
+
+function check_server {
+    if  ! [ -f $PID ]; then
+
+        # load rvm ruby
+        source $RVM
+
+        # start server
+        cd $DIR && ruby server-control.rb start
+
+    fi
+}
+
+# 0s
+check_server
+sleep 15
+
+# 15s
+check_server
+sleep 15
+
+# 30s
+check_server
+sleep 15
+
+# 45s
+check_server

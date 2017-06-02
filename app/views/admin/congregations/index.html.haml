@@ -25,8 +25,8 @@
             = glyph(:edit)
             edycja
 
-          = link_to admin_congregation_path(congregation), class: 'btn btn-danger btn-sm safe-delete ml-15',
-            data: { delete_text_info: "Ta akcja usunie zbór '#{congregation.name}' dostępu do transmisji. Potwierdź."}  do
+          = link_to admin_congregation_path(congregation), class: 'btn btn-danger btn-sm soft-delete ml-15',
+            data: { message: "Ta akcja usunie zbór '#{congregation.name}' dostępu do transmisji. Potwierdź."}  do
             = glyph(:trash)
             usuń
 - else

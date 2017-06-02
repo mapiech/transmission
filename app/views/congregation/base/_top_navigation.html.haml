@@ -1,7 +1,7 @@
 %li{ class: (@menu == :transmission) ? 'active' : nil }
   = link_to congregation_transmission_path do
     = glyph('phone-alt')
-    Transmisja
+    Transmisja - #{current_congregation.name}
 
 %li{ class: (@menu == :users) ? 'active' : nil }
   = link_to congregation_users_path do
