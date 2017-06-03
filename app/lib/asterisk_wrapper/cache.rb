@@ -3,7 +3,7 @@ module AsteriskWrapper
     @@cache = nil
 
     def cache
-      @@cache ||= Redis.new(host: '127.0.0.1', port: 6379, db: 3)
+      @@cache ||= Redis.new(url: YAML.load(File.read(File.join(Rails.root, 'config', 'redis.yml')))[Rails.env]['redis_asterisk_cache_store_url'])
 
       def @@cache.temporarily_set(key, value, seconds)
         @@cache.multi do

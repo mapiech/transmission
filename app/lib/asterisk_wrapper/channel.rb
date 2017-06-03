@@ -19,7 +19,7 @@ module AsteriskWrapper
       unmuted_channel_object = unmuted_channel(bridge_name)
       {
           users: list(bridge_name),
-          unmuted: unmuted_channel_object.present? ? unmuted_channel_object.unmuted_attributes : nil
+          unmuted: unmuted_channel_object.present? ? unmuted_channel_object.mute_action_attributes : nil
       }
     end
 
@@ -126,12 +126,17 @@ module AsteriskWrapper
     end
 
     def mute
-      ami.command("confbridge mute #{bridge_name} #{channel}")
+      if channel
+        ami.command("confbridge mute #{bridge_name} #{channel}")
+        cache.del "#{bridge_name}-unmuted"
+      end
     end
 
     def unmute
-      ami.command("confbridge unmute #{bridge_name} #{channel}")
-      cache.set "#{bridge_name}-unmuted", caller_id
+      if channel
+        ami.command("confbridge unmute #{bridge_name} #{channel}")
+        cache.set "#{bridge_name}-unmuted", caller_id
+      end
     end
 
     def kick
@@ -163,7 +168,7 @@ module AsteriskWrapper
 
     end
 
-    def unmuted_attributes
+    def mute_action_attributes
       {
           user_id: user.id,
           caller_id: caller_id,

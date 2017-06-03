@@ -98,9 +98,14 @@ module AsteriskWrapper
 
     end
 
+    def on_confbridge_mute
+      #cache.del "#{bridge_name}-unmuted", caller_id
+      ActionCable.server.broadcast "update-#{channel_object.bridge_name}", channel_object.mute_action_attributes.merge(action: 'muted')
+    end
+
     def on_confbridge_unmute
-      cache.set "#{bridge_name}-unmuted", caller_id
-      ActionCable.server.broadcast "update-#{channel_object.bridge_name}", channel_object.unmuted_attributes.merge(action: 'unmuted')
+      #cache.set "#{bridge_name}-unmuted", caller_id
+      ActionCable.server.broadcast "update-#{channel_object.bridge_name}", channel_object.mute_action_attributes.merge(action: 'unmuted')
     end
 
     def channel_object(reload = false)
@@ -138,10 +143,6 @@ module AsteriskWrapper
     def internal?
       data['CallerIDNum'].size < 9
     end
-
-
-
-
 
   end
 

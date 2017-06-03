@@ -3,11 +3,9 @@ $(document).on('turbolinks:load', function() {
     if($('#phone-transmission').length > 0) {
 
         App.update = App.cable.subscriptions.create( { channel: 'UpdateChannel', transmission: $('body').data('transmission') }, {
-
            received: function(data) {
              Users.process(data);
            }
-
         });
 
     }
@@ -29,24 +27,33 @@ var Users = {
 
         $(document).on('turbolinks:load', function() {
 
-            _this.channelTemplate = $.template("channel", $('#channel-template').html() );
-            _this.muteAreaTemplate = $.template("mute-area-template", $('#mute-area-template').html() );
 
 
-            // load initial data
 
-                var initial_data = $('#phone-transmission').data('initial');
-                // load users
-                if($('#phone-transmission').length > 0) {
+            if($('#phone-transmission').length > 0) {
+
+                _this.channelTemplate = $.template("channel", $('#channel-template').html() );
+                _this.muteAreaTemplate = $.template("mute-area-template", $('#mute-area-template').html() );
+
+                // load initial data
+
+                    // load users
+
+                    var initial_data = $('#phone-transmission').data('initial');
+
                     channels = initial_data['users'];
                     $.each(channels, function (index, data) {
                         _this.create(data);
                     });
-                }
 
-                // set unmuted
+                    // set unmuted
+                    if(initial_data['unmuted']) {
+                        _this.unmuted(initial_data['unmuted']);
+                    }
 
-                _this.unmuted(initial_data['unmuted']);
+
+            }
+
 
         });
 
@@ -106,16 +113,18 @@ var Users = {
         $('#phone-transmission-user-'+data.user_id).remove();
     },
 
-    unmuted: function(data) {
-
-        modal = $('#comment-modal');
-
-        if(data.admin) {
+    muted: function(data) {
+        if(!data.admin) {
+            modal = $('#comment-modal');
             $('.unmute').show();
             $('.admin-play').show();
             modal.modal('hide');
         }
-        else {
+    },
+
+    unmuted: function(data) {
+        if(!data.admin) {
+            modal = $('#comment-modal');
             modal.find('.modal-body').html($.tmpl(this.muteAreaTemplate, data));
             $('.admin-play').hide();
             modal.modal('show');
@@ -136,8 +145,11 @@ var Comments = {
 
         var _this = this;
 
+
         $(document).on('turbolinks:load', function() {
-            _this.commentTemplate = $.template("comment", $('#comment-template').html() );
+            if($('#phone-transmission').length > 0) {
+                _this.commentTemplate = $.template("comment", $('#comment-template').html());
+            }
         });
 
         _this.timers = {};

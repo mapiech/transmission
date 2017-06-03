@@ -2,7 +2,7 @@ class EventFilter
 
   attr_accessor :event
 
-  ACTIONS = %w{ ConfbridgeJoin BridgeLeave DTMFBegin ConfbridgeUnmute }
+  ACTIONS = %w{ ConfbridgeJoin BridgeLeave DTMFBegin ConfbridgeUnmute ConfbridgeMute }
 
   def initialize(event)
     self.event = event

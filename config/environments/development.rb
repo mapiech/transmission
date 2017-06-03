@@ -14,7 +14,7 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   config.action_controller.perform_caching = false
-  config.cache_store = :redis_store, "redis://localhost:6379/5/cache", { expires_in: 180.minutes }
+  config.cache_store = :redis_store, YAML.load(File.read(File.join(Rails.root, 'config', 'redis.yml')))[Rails.env]['redis_cache_store_url'], { expires_in: 180.minutes }
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

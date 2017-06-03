@@ -15,8 +15,10 @@ module AsteriskWrapper
     end
 
     def create_ami_connection
-      @@ami = RubyAsterisk::AMI.new('192.168.0.15', 5038)
-      @@ami.login('admin', 'Zdrojowa13')
+      configuration = YAML.load(File.read(File.join(Rails.root, 'config', 'asterisk.yml')))
+
+      @@ami = RubyAsterisk::AMI.new(configuration['host'], configuration['port'])
+      @@ami.login(configuration['ami_login'], configuration['ami_password'])
 
       def @@ami.public_execute(command, options = {})
         request = RubyAsterisk::Request.new(command, options)

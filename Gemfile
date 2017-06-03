@@ -34,6 +34,9 @@ gem 'net-telnet'
 gem 'ruby-asterisk'
 gem 'safe_parser', require: 'safe_parser'
 gem 'draper'
+gem 'omniauth-google-oauth2'
+gem 'google-api-client', '~> 0.11'
+gem 'signet'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

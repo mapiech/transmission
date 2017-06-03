@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => '/cable'
 
+  get '/auth/google_oauth2/callback', to: 'congregation/oauth#callback'
+
   namespace :congregation, path: 'zbór' do
 
     resources :users, path: 'bracia-siostry'
@@ -17,7 +19,10 @@ Rails.application.routes.draw do
     post 'unmute/:caller_id', to: 'mute#unmute', as: :unmute
     delete 'kick/:caller_id', to: 'kick#kick', as: :kick
     delete 'kick-all/:bridge_name', to: 'kick#kick_all', as: :kick_all
+
   end
+
+
 
   namespace :admin, path: 'admin' do
     root to: 'users#index'

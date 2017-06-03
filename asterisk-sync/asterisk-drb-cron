@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-RVM=/home/marek/.rvm/environments/ruby-2.4.0
-DIR=/home/marek/RubymineProjects/transmission/asterisk-sync
-PID=$SCRIPT/server.rb.pid
+RVM=$HOME/.rvm/environments/ruby-2.4.0
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PID=$DIR/server.rb.pid
 
 
 function check_server {
