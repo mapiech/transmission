@@ -28,10 +28,10 @@ module Transmission
         authentication:       'plain',
         enable_starttls_auto: true
     }
+
+    config.action_cable.url = ENV['ACTION_CABLE_URL']
+    config.action_cable.allowed_request_origins = %w( http://localhost http://lvh.me http://lt.me http://t.me )
+
   end
-
-  config.action_cable.url = ENV['ACTION_CABLE_URL']
-  config.action_cable.allowed_request_origins = %w( http://localhost http://lvh.me http://lt.me http://t.me )
-
 
 end
