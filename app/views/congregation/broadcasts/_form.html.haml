@@ -1,0 +1,20 @@
+= simple_form_for [ :congregation, @broadcast ], html: { id: 'edit-broadcast-form', class: 'edit-broadcast-form' } do |form|
+  .modal-dialog
+    .modal-content
+
+      .modal-header
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"Zamknij</span></button>
+        %h4.modal-title Udostępnij
+
+      .modal-body
+        <input type="hidden" name="broadcast[user_ids][]" value />
+        %ul#form-brodcast-user-list
+          - current_congregation.users.with_email.each do |user|
+            %li
+              %span.checkbox
+                = label_tag "broadcast_user_ids_#{user.id}" do
+                  = check_box_tag "broadcast[user_ids][]", user.id, @broadcast.user_ids.include?(user.id), id: "broadcast_user_ids_#{user.id}"
+                  = user.full_name
+
+      .modal-footer
+        = form.button :submit, 'Zapisz', class: 'btn btn-primary pull-right'

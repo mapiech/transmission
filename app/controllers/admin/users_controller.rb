@@ -45,7 +45,7 @@ class Admin::UsersController < Admin::BaseController
 
   def users_attributes
     params.require(:user).permit(
-        :id, :full_name, :email, :congregation_id, :admin, :allow_join_to_any,
+        :id, :full_name, :email, :congregation_id, :admin, :allow_join_to_any, :auto_invite_to_video,
         phone_attributes: [
             :id, :phone_number,
             phone_key_maps_attributes: [ :id, :digit, :full_name ]

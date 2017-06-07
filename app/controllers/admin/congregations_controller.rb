@@ -4,6 +4,7 @@ class Admin::CongregationsController < Admin::BaseController
 
   def index
     @congregations = Congregation.order(:name)
+    @admins = User.where(admin: true)
   end
 
   def new
@@ -32,6 +33,19 @@ class Admin::CongregationsController < Admin::BaseController
     end
   end
 
+  def edit_password
+    @congregation = Congregation.find(params[:id])
+  end
+
+  def update_password
+    @congregation = Congregation.find(params[:id])
+    if @congregation.update(congregations_password_attributes)
+      redirect_to admin_congregations_path, notice: "Hasło zostało pomyślnie zmienione."
+    else
+      render 'edit_password'
+    end
+  end
+
   def destroy
     @congregation = Congregation.find(params[:id])
     if @congregation.destroy
@@ -41,13 +55,48 @@ class Admin::CongregationsController < Admin::BaseController
     end
   end
 
+  def reset_stream
+    @congregation = Congregation.find(params[:id])
+
+    begin
+      if @congregation.reset_stream!
+        redirect_to admin_congregations_path, notice: "Stream został zresetowany."
+      else
+        redirect_to admin_congregations_path, alert: "Nie udało się zresetować streamu."
+      end
+    rescue
+      redirect_to admin_congregations_path, alert: "Nie udało się zresetować streamu."
+    end
+  end
+
+  def reset_broadcasts
+    @congregation = Congregation.find(params[:id])
+
+    begin
+      if @congregation.reset_broadcasts!
+        redirect_to admin_congregations_path, notice: "Tramisje wideo zostały zresetowane."
+      else
+        redirect_to admin_congregations_path, alert: "Nie udało się zresetować transmisji."
+      end
+    rescue
+      redirect_to admin_congregations_path, alert: "Nie udało się zresetować transmisji."
+    end
+  end
+
   protected
 
   def congregations_attributes
     params.require(:congregation).permit(
-        :id, :name, :default_ip, :default_day, :default_weekend_time, :has_phone_transmission,
+        :id, :name, :default_ip, :default_day, :default_weekend_time, :has_phone_transmission, :has_video_transmission,
         :password,
-        phone_transmission_attributes: [ :id, :internal_phone_number, :sip_phone_number ]
+        phone_transmission_attributes: [ :id, :internal_phone_number, :sip_phone_number ],
+        video_transmission_attributes: [ :id ]
+    )
+  end
+
+  def congregations_password_attributes
+    params.require(:congregation).permit(
+        :id, :password
     )
   end
 

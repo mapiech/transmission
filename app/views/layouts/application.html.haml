@@ -5,8 +5,9 @@
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     = viewport_meta_tag
     = action_cable_meta_tag
-    %title= content_for?(:title) ? yield(:title) : "Transmisja telefoniczna - Włocławek"
+    %title= content_for?(:title) ? yield(:title) : "Transmisja zebrań - Włocławek"
     = csrf_meta_tags
+    = javascript_include_tag "https://www.youtube.com/iframe_api", sync: 1
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
@@ -14,7 +15,7 @@
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application", 'data-turbolinks-track' => 'reload'
 
-  %body{ data: { transmission: current_congregation.try(:phone_transmission).try(:internal_phone_number) } }
+  %body
     %nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role="navigation")
       .container
         .navbar-header
@@ -42,4 +43,5 @@
 
     = render 'shared/soft_delete_modal'
     = render 'shared/comment_modal'
+    = render 'shared/dynamic_modal'
     = render 'congregation/transmission/tmp_templates'

@@ -14,4 +14,8 @@
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require_tree .
+//= require 'cable'
+//= require_tree ./channels
+//= require_tree ./lib
+//= require_tree ./app
+

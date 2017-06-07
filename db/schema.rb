@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531135044) do
+ActiveRecord::Schema.define(version: 20170606224313) do
 
   create_table "admins", force: :cascade do |t|
     t.string "full_name"
@@ -19,6 +19,22 @@ ActiveRecord::Schema.define(version: 20170531135044) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
+  end
+
+  create_table "broadcast_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "broadcast_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "broadcasts", force: :cascade do |t|
+    t.integer "congregation_id"
+    t.string "broadcast_id"
+    t.string "day_label"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "congregations", force: :cascade do |t|
@@ -64,12 +80,16 @@ ActiveRecord::Schema.define(version: 20170531135044) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "congregation_id"
+    t.boolean "auto_invite_to_video", default: false
   end
 
   create_table "video_transmissions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "congregation_id"
+    t.string "refresh_token"
+    t.string "stream_id"
+    t.string "stream_name"
   end
 
 end

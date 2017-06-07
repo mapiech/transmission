@@ -4,18 +4,70 @@
 .row
   .col-xs-12.col-sm-6
 
-    .clearfix
+    .well.clearfix
 
-      %h1.page-title.pull-left
-        Transmisja Telefoniczna
-        %br
-        %small= phone_number(current_congregation.sip_phone_number)
+      .clearfix
+        %h1.page-title.pull-left
+          Transmisja Telefoniczna
+          %br
+          %small= phone_number(current_congregation.sip_phone_number)
 
-      .pull-right.header-action
-        = link_to congregation_kick_all_path(current_congregation.internal_phone_number), class: 'soft-delete soft-delete-remote pull-right text-danger',
-           data: { message: 'Ta akcja usunie wszystkich z transmisji.'}, title: 'Ta akcja usunie wszystkich z transmisji.' do
-          = glyph(:trash)
+        .pull-right.header-action
+          = link_to congregation_kick_all_path(current_congregation.internal_phone_number), class: 'soft-delete soft-delete-remote pull-right text-danger',
+             data: { message: 'Ta akcja usunie wszystkich z transmisji.' }, title: 'Ta akcja usunie wszystkich z transmisji.' do
+            = glyph(:trash)
 
 
+      %ul#phone-transmission.clearfix{ data: { initial: AsteriskWrapper::Channel.initial_data(current_congregation.internal_phone_number).to_json, transmission: current_congregation.try(:phone_transmission).try(:internal_phone_number) }}
 
-    %ul#phone-transmission{ data: { initial: AsteriskWrapper::Channel.initial_data(current_congregation.internal_phone_number).to_json }}
+  .col-xs-12.col-sm-6
+
+    - if current_congregation.has_video_transmission
+
+      .well.clearfix
+
+        .clearfix
+          %h1.page-title.pull-left
+            Transmisja Wideo
+
+
+        #youtube-refresh.alert.alert-danger{ style: @google_auth_error ? '' : 'display: none;' }
+          <button name="button" type="button" class="close">×</button>
+          %p.text-center
+            Aby korzystać z transmisji wideo musisz odświeżyć sesję Youtube.
+            %br
+            Możesz użyć tylko konta #{ENV['GOOGLE_DEFAULT_EMAIL']}
+          %p.text-center
+            = link_to omniauth_url(:congregation), class: 'btn btn-social btn-google btn-md btn-social' do
+              %span.fa.fa-google
+              Odśwież Dostęp Do Youtube
+
+        #video-transmission{ data: { congregation: current_congregation.id, initial: Broadcast.initial_data(current_congregation.id).to_json } }
+          .text-center
+            = link_to congregation_broadcasts_path, method: :post, class: 'btn btn-primary generate-video-transmission', remote: true, style: 'display: none;' do
+              = glyph(:tasks)
+              Stwórz nową transmisję
+
+            .preparing-video-transmission{ style: 'display: none;' }
+              = image_tag 'gears.gif', class: 'gears', height: 100
+              %p.preparing-video-transmission-info
+                Przygotowanie transmisji może potrwać około 2 minut. Poczekaj cierpliwie.
+                Jeżeli transmisja nie wystartuje, ustaw wszystko ręcznie na Youtube i wyślij link emailem.
+
+          #video-preview-wrapper{ style: 'display: none;' }
+            .overlay
+              = link_to '#', class: 'remove-video-preview text-danger', title: 'Usuń podgląd' do
+                = glyph('remove-circle')
+            #video-preview
+
+          %p.message.text-center.alert.alert-danger{ style: 'display: none;' }
+
+
+          #broadcast-users{ style: 'display: none;' }
+            %ul#video-users.clearfix
+
+
+            .clerfix.text-center
+              = link_to edit_congregation_broadcast_path(id: 'id'), class: 'btn btn-primary manage-users' do
+                = glyph(:user)
+                Udostępnij

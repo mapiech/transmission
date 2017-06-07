@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   before_action :block_if_congregation_signed_in, if: :congregation_signed_in?
 
   def index
-
+    render
   end
 
   protected

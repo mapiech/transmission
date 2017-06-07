@@ -1,5 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "bootstrap-social";
 
 body {
   padding-top: 70px;
@@ -57,7 +60,9 @@ h2 {
   }
 }
 
-.ml-15 { margin-left: 15px; }
+.ml-15 {
+  margin-left: 15px;
+}
 
 .user-key-maps-entry-form {
   margin: 15px 0 15px 30px;
@@ -137,7 +142,6 @@ h2 {
 
     }
 
-
   }
 }
 
@@ -160,5 +164,129 @@ h2 {
 #comment-modal {
   .modal-body {
     background: #f7f9f5;
+  }
+}
+
+#youtube-refresh {
+  margin: 10px 0;
+
+  p {
+    position: relative;
+    margin: 10px auto 0 auto;
+  }
+}
+
+#video-transmission {
+
+  position: relative;
+
+
+
+  p.preparing-video-transmission-info {
+    margin: 20px;
+  }
+
+  #video-preview-wrapper {
+
+    position: relative;
+    margin: 5px auto;
+    width: 300px;
+    height: 150px;
+
+    #video-preview {
+      width: 300px;
+      height: 150px;
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    .remove-video-preview {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+
+  #broadcast-users {
+    margin: 20px 0;
+
+    #video-users {
+
+      margin: 0 0 20px 0;
+      position: relative;
+
+      listy-style: none;
+      margin: 20px 0;
+      padding: 0;
+
+      li {
+
+        position: relative;
+
+        background: #f7f9f5;
+        list-style: none;
+        padding: 15px 20px;
+
+        margin: 20px 0;
+
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        min-height: 60px;
+
+        .user-name {
+          margin: 0;
+          padding: 0;
+          font-size: 16px;
+          font-weight: bold;
+        }
+
+        .users-count {
+          font-size: 14px;
+          color: #999;
+        }
+
+        .actions {
+          margin: 0;
+          vertical-align: bottom;
+          a {
+            vertical-align: bottom;
+            img {
+              vertical-align: bottom;
+            }
+            margin-left: 10px;
+
+          }
+        }
+      }
+    }
+  }
+
+
+
+}
+  #form-brodcast-user-list {
+    list-style: none;
+    padding: 0 20px;
+    li {
+      padding: 5px 0;
+      border-bottom: 1px dashed #ccc;
+    }
+  }
+
+ul.actions {
+  margin: 0;
+  padding: 0;
+  listy-style: none;
+  li {
+    padding: 6px;
+    list-style: none;
   }
 }

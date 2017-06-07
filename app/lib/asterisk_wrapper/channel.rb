@@ -16,11 +16,15 @@ module AsteriskWrapper
     attr_accessor :caller_id, :channel, :bridge_name, :digit, :users_count
 
     def self.initial_data(bridge_name)
-      unmuted_channel_object = unmuted_channel(bridge_name)
-      {
-          users: list(bridge_name),
-          unmuted: unmuted_channel_object.present? ? unmuted_channel_object.mute_action_attributes : nil
-      }
+      begin
+        unmuted_channel_object = unmuted_channel(bridge_name)
+        {
+            users: list(bridge_name),
+            unmuted: unmuted_channel_object.present? ? unmuted_channel_object.mute_action_attributes : nil
+        }
+      rescue
+        nil
+      end
     end
 
     def self.list(bridge_name)

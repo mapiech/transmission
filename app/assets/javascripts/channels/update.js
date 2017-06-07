@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function() {
 
     if($('#phone-transmission').length > 0) {
 
-        App.update = App.cable.subscriptions.create( { channel: 'UpdateChannel', transmission: $('body').data('transmission') }, {
+        App.update = App.cable.subscriptions.create( { channel: 'UpdateChannel', transmission: $('#phone-transmission').data('transmission') }, {
            received: function(data) {
              Users.process(data);
            }
@@ -41,14 +41,16 @@ var Users = {
 
                     var initial_data = $('#phone-transmission').data('initial');
 
-                    channels = initial_data['users'];
-                    $.each(channels, function (index, data) {
-                        _this.create(data);
-                    });
+                    if(initial_data) {
+                        channels = initial_data['users'];
+                        $.each(channels, function (index, data) {
+                            _this.create(data);
+                        });
 
-                    // set unmuted
-                    if(initial_data['unmuted']) {
-                        _this.unmuted(initial_data['unmuted']);
+                        // set unmuted
+                        if (initial_data['unmuted']) {
+                            _this.unmuted(initial_data['unmuted']);
+                        }
                     }
 
 

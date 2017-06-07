@@ -46,7 +46,7 @@ class Congregation::UsersController < Congregation::BaseController
 
   def users_attributes
     params.require(:user).permit(
-        :id, :full_name, :email,
+        :id, :full_name, :email, :auto_invite_to_video,
         phone_attributes: [
             :id, :phone_number,
             phone_key_maps_attributes: [ :id, :digit, :full_name ]

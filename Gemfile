@@ -37,7 +37,8 @@ gem 'draper'
 gem 'omniauth-google-oauth2'
 gem 'google-api-client', '~> 0.11'
 gem 'signet'
-
+gem 'font-awesome-sass'
+gem 'airbrake', '~> 6.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

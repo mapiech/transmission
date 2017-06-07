@@ -8,6 +8,9 @@
 
       = form.input :email
 
+      - if current_congregation.has_video_transmission
+        = form.input :auto_invite_to_video
+
       = form.fields_for :phone do |phone_form|
 
         = phone_form.input :id, as: :hidden

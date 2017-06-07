@@ -21,6 +21,7 @@ en:
       user:
         admin: Admin Transmisji
         allow_join_to_any: Dostęp Do Wszystkich Zborów
+        auto_invite_to_video: Automatycznie Dodaj Do Transmisji Wideo
       congregation:
         name: Nazwa
         default_ip: Domyślne IP

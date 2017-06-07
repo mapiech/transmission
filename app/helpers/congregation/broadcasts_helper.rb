@@ -1,0 +1,2 @@
+module Congregation::BroadcastsHelper
+end

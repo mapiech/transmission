@@ -1,0 +1,19 @@
+#transmission.row
+  .col-xs-12
+    - if @broadcast
+      #video-container.clearfix{ data: { id: @broadcast.broadcast_id } }
+        #video-wrapper
+          #video
+
+      #user-counts.text-center{ data: { count: current_user.get_count }}
+        %p
+          %b Ile osób będzie oglądać transmisję?
+        %p
+          = link_to '1 osoba', public_user_counter_path(count: 1), method: :post, remote: true, class: 'btn btn-default set-count', data: { count: 1 }
+          = link_to '2 osoby', public_user_counter_path(count: 2), method: :post, remote: true, class: 'btn btn-default set-count', data: { count: 2 }
+          = link_to '3 osoby', public_user_counter_path(count: 3), method: :post, remote: true, class: 'btn btn-default set-count', data: { count: 3 }
+          = link_to '4 osoby', public_user_counter_path(count: 4), method: :post, remote: true, class: 'btn btn-default set-count', data: { count: 4 }
+          = link_to '5 osób',  public_user_counter_path(count: 5), method: :post, remote: true, class: 'btn btn-default set-count', data: { count: 5 }
+    - else
+      %p#any-broadcast.text-center.reload-page
+        Transmisja nie jest włączona lub nie masz dostępu. Gdy bracia ją włączą pojawi się automatycznie. Nie musisz odświeżać strony.

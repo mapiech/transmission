@@ -11,23 +11,76 @@
   %table.table
     %tr
       %th Nazwa
-      %th
-      %th
+      %th Szczegóły
       %th
     - @congregations.each do |congregation|
       %tr
         %td= congregation.name
         %td
-        %td
+          - if congregation.has_phone_transmission
+            %p
+              %span Numer Transmisji:
+              %b= phone_number(congregation.sip_phone_number)
+              %br
+              %span Numer Wewnętrzny:
+              %b= congregation.internal_phone_number
+          - if congregation.has_video_transmission
+            %p
+              %span Stream ID:
+              %b= congregation.video_transmission.stream_id
+              %br
+              %span Stream Name:
+              %b= congregation.video_transmission.stream_name
+
         %td
 
-          = link_to edit_admin_congregation_path(congregation), class: 'btn btn-primary btn-sm' do
-            = glyph(:edit)
-            edycja
+          %ul.actions
 
-          = link_to admin_congregation_path(congregation), class: 'btn btn-danger btn-sm soft-delete ml-15',
-            data: { message: "Ta akcja usunie zbór '#{congregation.name}' dostępu do transmisji. Potwierdź."}  do
-            = glyph(:trash)
-            usuń
+            %li
+              = link_to edit_admin_congregation_path(congregation), class: 'btn btn-primary btn-xs', title: 'edycja' do
+                = glyph(:edit)
+                Edycja
+
+            %li
+              = link_to edit_password_admin_congregation_path(congregation), class: 'btn btn-primary btn-xs', title: 'zmiana hasła' do
+                = glyph(:edit)
+                Zmiana Hasła
+
+            %li
+              = link_to admin_congregation_path(congregation), class: 'btn btn-danger btn-xs soft-delete', title: 'usuń',
+                data: { message: "Ta akcja usunie zbór '#{congregation.name}' dostępu do transmisji. Potwierdź."} do
+                = glyph(:trash)
+                Usuń
+
+            - if congregation.has_video_transmission
+              %li
+                = link_to reset_stream_admin_congregation_path(congregation), class: 'btn btn-danger btn-xs soft-delete', title: 'zresetuj stream',
+                  data: { message: "Ta akcja zresetuje stream przypisany do zboru. Potwierdź."} do
+                  = glyph(:refresh)
+                  Zresetuj Stream
+
+              %li
+                = link_to reset_broadcasts_admin_congregation_path(congregation), class: 'btn btn-danger btn-xs soft-delete', title: 'zresetuj transmisje wideo',
+                  data: { message: "Ta akcja zresetuje stream przypisany do zboru. Potwierdź."} do
+                  = glyph('hd-video')
+                  Zresetuj Transmisje
+
+  %h4 Administratorzy Transmisji
+  - if @admins.any?
+    %table.table
+      %tr
+        %th Nazwa
+        %th Numer telefonu
+      - @admins.each do |admin|
+        %tr
+          %td= admin.full_name
+          %td= admin.phone.phone_number
+    %p
+      %span Secret:
+      %b= ENV['FRIEND_SIP_SECRET']
+
+
+
+
 - else
   %h1.text-center.no-resources Nie został dodany jeszcze żaden zbór.

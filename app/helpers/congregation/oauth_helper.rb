@@ -1,2 +1,0 @@
-module Congregation::OauthHelper
-end
