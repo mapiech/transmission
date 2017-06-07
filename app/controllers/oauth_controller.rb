@@ -29,11 +29,16 @@ class OauthController < ApplicationController
     if request.env['omniauth.auth'].info.email == ENV['GOOGLE_DEFAULT_EMAIL'] && request.env['omniauth.auth'].credentials.refresh_token.present?
       VideoTransmission.update_all(refresh_token: request.env['omniauth.auth'].credentials.refresh_token)
     end
-    redirect_to root_path and return
+    if current_admin
+      redirect_to admin_root_path and return
+    else
+      redirect_to root_path and return
+    end
+
   end
 
   def current_resource
-    @current_resource ||= (current_congregation and request.env['omniauth.params']['scope'].include?('youtube')) ?
+    @current_resource ||= ((current_congregation or current_admin) and request.env['omniauth.params']['scope'].include?('youtube')) ?
       :congregation : :user
   end
 

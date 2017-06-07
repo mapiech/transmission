@@ -7,6 +7,10 @@
       = glyph(:plus)
       Dodaj
 
+    = link_to omniauth_url(:congregation), class: 'btn btn-social btn-google btn-md btn-social ml-15' do
+      %span.fa.fa-google
+      Odśwież Dostęp Do Youtube
+
 - if @congregations.any?
   %table.table
     %tr
@@ -65,6 +69,7 @@
                   = glyph('hd-video')
                   Zresetuj Transmisje
 
+
   %h4 Administratorzy Transmisji
   - if @admins.any?
     %table.table
@@ -78,9 +83,6 @@
     %p
       %span Secret:
       %b= ENV['FRIEND_SIP_SECRET']
-
-
-
 
 - else
   %h1.text-center.no-resources Nie został dodany jeszcze żaden zbór.
