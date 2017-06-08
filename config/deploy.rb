@@ -11,6 +11,8 @@ set :puma_init_active_record, true
 
 # Don't change these unless you know what you're doing
 set :pty,             true
+set :ssh_options, paranoid: false
+
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
@@ -26,7 +28,9 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
 # sidekiq
-set :sidekiq_queue, [ 'default,1', 'emails,1' ]
+#set :sidekiq_processes, 2
+#set :sidekiq_queue, [ 'default,1', 'mailers,1' ]
+set :sidekiq_config, "config/sidekiq.yml"
 
 ## Defaults:
 # set :scm,           :git

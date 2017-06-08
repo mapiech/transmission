@@ -22,7 +22,8 @@ module AsteriskWrapper
             users: list(bridge_name),
             unmuted: unmuted_channel_object.present? ? unmuted_channel_object.mute_action_attributes : nil
         }
-      rescue
+      rescue Exception => e
+        Airbrake.notify("Stream could not be created.")
         nil
       end
     end
