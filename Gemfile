@@ -39,6 +39,8 @@ gem 'google-api-client', '~> 0.11'
 gem 'signet'
 gem 'font-awesome-sass'
 gem 'airbrake', '~> 6.1'
+gem 'serwersms'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -56,6 +58,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 end
+
+gem 'whenever', :require => false
 
 group :development do
   gem 'web-console', '>= 3.3.0'

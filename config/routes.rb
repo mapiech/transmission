@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
     resources :users, path: 'bracia-siostry'
     get 'transmisja', to: 'transmission#index', as: :transmission
+    get 'komentarze/:congregation_id', to: 'transmission#comments', as: :comments
     post 'mute/:caller_id', to: 'mute#mute', as: :mute
     post 'unmute/:caller_id', to: 'mute#unmute', as: :unmute
     delete 'kick/:caller_id', to: 'kick#kick', as: :kick

@@ -2,6 +2,8 @@ class Congregation::BaseController < ApplicationController
 
   before_action :authenticate_congregation!
 
+  layout 'application'
+
   protected
 
   def verify_bridge

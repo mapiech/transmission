@@ -1,5 +1,6 @@
 class Congregation::TransmissionController < Congregation::BaseController
 
+  skip_before_action :authenticate_congregation!, only: [ :comments ]
   before_action -> { set_menu(:transmission) }
 
   def index
@@ -10,6 +11,10 @@ class Congregation::TransmissionController < Congregation::BaseController
     rescue Signet::AuthorizationError
       @google_auth_error = true
     end
+  end
+
+  def comments
+    @congregation = Congregation.find(params[:congregation_id])
   end
 
 end
