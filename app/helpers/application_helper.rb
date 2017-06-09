@@ -12,12 +12,27 @@ module ApplicationHelper
     end
   end
 
+  def view_sign_out_path
+    if request.path.starts_with?('/admin')
+      destroy_admin_session_path
+    elsif current_layout?('public') or request.path.starts_with?('/public')
+      destroy_user_session_path
+    else
+      destroy_congregation_session_path
+    end
+  end
+
   def phone_number(p)
     "#{p[0]}#{p[1]} #{p[2]}#{p[3]}#{p[4]} #{p[5]}#{p[6]} #{p[7]}#{p[8]}"
   end
 
   def current_layout
     layout = controller.class.send(:_layout)
+
+    if layout.respond_to? :call
+      layout = layout.call
+    end
+
     if layout.nil?
       'public'
     elsif layout.instance_of? String or layout.instance_of? Symbol

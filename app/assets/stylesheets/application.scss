@@ -92,6 +92,20 @@ h2 {
     border-radius: 5px;
     min-height: 60px;
 
+    &.public {
+      background: none;
+      border: none;
+      float: left;
+      margin: 0px;
+      padding: 0;
+      .comments {
+        margin: 0;
+        .comment-entry {
+          margin: 10px;
+        }
+      }
+    }
+
     .user-name {
       margin: 0;
       padding: 0;

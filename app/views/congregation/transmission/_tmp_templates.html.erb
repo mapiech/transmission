@@ -25,6 +25,13 @@
     </li>
 </script>
 
+<script type="text/x-tmpl" id="public-channel-template">
+    <li id="phone-transmission-user-${user_id}" data-admin="${admin}" data-caller-id="" class="clearfix public">
+      {{if !admin}}
+        <p class="comments clearfix"></p>
+      {{/if}}
+    </li>
+</script>
 
 <script type="text/x-tmpl" id="mute-area-template">
   <div class="mute-area text-center">
@@ -32,9 +39,11 @@
       ${caller_id}
       <%= image_tag('animated-sound-icon.gif', height: 26) %>
     </p>
+    {{if Users.private() }}
     <p class="mute">
       <%= link_to 'STOP', CGI::unescape(congregation_mute_path(caller_id: '${caller_id}')), class: 'mute-action mute btn btn-lg btn-danger' %>
     </p>
+    {{/if}}
   </div>
 </script>
 

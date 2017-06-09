@@ -1,16 +1,1 @@
-.row
-
-  = render template: 'congregations/sessions/new'
-
-  .col-xs-12.col-md-6
-    .well
-
-      %h3 Podgląd Komentarzy
-      %hr
-
-      %ul#congregations-comment-list
-        - Congregation.order(:name).each do |congregation|
-          %li= link_to congregation.name, congregation_comments_path(congregation.id), class: 'btn btn-md btn-danger'
-
-
-
+= render template: 'congregations/sessions/new'

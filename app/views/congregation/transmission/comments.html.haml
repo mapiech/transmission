@@ -6,6 +6,6 @@
         %h1.page-title.pull-left
           Komentarze
           %br
-          %small= phone_number(@congregation.sip_phone_number)
+          %small= @congregation.name
 
-      %ul#phone-transmission.clearfix{ data: { initial: AsteriskWrapper::Channel.initial_data(@congregation.internal_phone_number).to_json, transmission: @congregation.try(:phone_transmission).try(:internal_phone_number) }}
+      %ul#phone-transmission.public.clearfix{ data: { initial: AsteriskWrapper::Channel.initial_data(@congregation.internal_phone_number).to_json, transmission: @congregation.try(:phone_transmission).try(:internal_phone_number) }}

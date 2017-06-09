@@ -1,17 +1,28 @@
-.col-xs-12.col-md-6
-  .well
+.row
+  .col-xs-12.col-md-6
+    .well
 
-    %h3 Panel transmisji
-    %hr
+      %h3 Panel transmisji
+      %hr
 
-    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .form-inputs
-        - resource.email = Congregation.guess_to_sign_in(request.remote_ip).try(:email)
-        = f.input :email, collection: Congregation.order(:name).pluck(:name, :email), as: :radio_buttons, required: false, label: 'Nazwa Zboru'
-        = f.input :password, required: false, autofocus: true, input_html: { style: 'width: 80px;' }
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .form-inputs
+          - resource.email = Congregation.guess_to_sign_in(request.remote_ip).try(:email)
+          = f.input :email, collection: Congregation.order(:name).pluck(:name, :email), as: :radio_buttons, required: false, label: 'Nazwa Zboru'
+          = f.input :password, required: false, autofocus: true, input_html: { style: 'width: 80px;' }
 
-        .row.form-actions.text-center
-          %hr
-          = button_tag class: 'btn btn-primary btn-md', type: 'submit' do
-            %span.button-label Zaloguj
-            = glyph("circle-arrow-right")
+          .row.form-actions.text-center
+            %hr
+            = button_tag class: 'btn btn-primary btn-md', type: 'submit' do
+              %span.button-label Zaloguj
+              = glyph("circle-arrow-right")
+
+  .col-xs-12.col-md-6
+    .well
+
+      %h3 Podgląd Komentarzy
+      %hr
+
+      %ul#congregations-comment-list
+        - Congregation.order(:name).each do |congregation|
+          %li= link_to congregation.name, congregation_comments_path(congregation.id), class: 'btn btn-md btn-danger'

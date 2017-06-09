@@ -1,7 +1,14 @@
 
 .omniauth-sign-in-area
 
-  %p Aby skorzystać z transmisji zaloguj się do swojego konta Google.
+  %p
+    Aby skorzystać z transmisji zaloguj się do swojego konta Google.
+    %br
+    %br
+    %b Nie mamy wglądu w Twoje hasło.
+    %br
+    %br
+    Logowanie odbywa się na stronie Google. Ma na celu potwierdzenie, że jesteś właścicielem tego adresu email i bracia w Twoim zborze wyrazili zgodę, abyś mógł korzystać z transmisji.
 
   = link_to omniauth_url(:user), class: 'btn btn-block btn-social btn-google btn-lg' do
     %span.fa.fa-google

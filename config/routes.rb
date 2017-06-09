@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
 
   devise_for :congregations,  path: 'zbór', path_names: { sign_in: 'logowanie', sign_out: 'wyloguj'},
-             skip: [ :registrations, :passwords, :confirmations ]
+             skip: [ :registrations, :passwords, :confirmations ], controllers: { sessions: 'sessions' }
 
   devise_for :admins, path: 'admin',path_names: { sign_in: 'logowanie', sign_out: 'wyloguj'},
-             skip: [ :registrations, :passwords, :confirmations ]
+             skip: [ :registrations, :passwords, :confirmations ], controllers: { sessions: 'sessions' }
 
-  devise_for :users, skip: [ :registrations, :passwords, :confirmations ]
-
+  devise_for :users, skip: [ :registrations, :passwords, :confirmations ], controllers: { sessions: 'sessions' }
 
   get 'auth/:provider/callback', to: 'oauth#callback'
   get 'auth/failure', to: 'oauth#failure'

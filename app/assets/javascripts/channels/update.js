@@ -32,7 +32,13 @@ var Users = {
 
             if($('#phone-transmission').length > 0) {
 
-                _this.channelTemplate = $.template("channel", $('#channel-template').html() );
+                if(_this.private()) {
+                    _this.channelTemplate = $.template("channel", $('#channel-template').html() );
+                }
+                else {
+                    _this.channelTemplate = $.template("channel", $('#public-channel-template').html() );
+                }
+
                 _this.muteAreaTemplate = $.template("mute-area-template", $('#mute-area-template').html() );
 
                 // load initial data
@@ -73,6 +79,14 @@ var Users = {
         })
 
 
+    },
+
+    public: function() {
+        return $('#phone-transmission').hasClass('public');
+    },
+
+    private: function() {
+        return $('#phone-transmission').hasClass('private');
     },
 
     process: function(data) {

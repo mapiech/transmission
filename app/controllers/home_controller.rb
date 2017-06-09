@@ -2,7 +2,10 @@ class HomeController < ApplicationController
 
   include CongregationDeviseHelper
 
+  before_action :only_local_ips_or_admin!
   before_action :block_if_congregation_signed_in, if: :congregation_signed_in?
+
+  layout 'application'
 
   def index
     render

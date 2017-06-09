@@ -31,7 +31,7 @@
           %ul.nav.navbar-nav.pull-right
             - if current_congregation or current_admin
               %li
-                = link_to destroy_congregation_session_path, method: :delete, title: 'Wyloguj się' do
+                = link_to view_sign_out_path, method: :delete, title: 'Wyloguj się' do
                   = glyph(:off)
     .container
       .row
