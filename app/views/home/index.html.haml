@@ -9,7 +9,7 @@
       %hr
 
       %ul#congregations-comment-list
-        - Congregation.all.each do |congregation|
+        - Congregation.order(:name).each do |congregation|
           %li= link_to congregation.name, congregation_comments_path(congregation.id), class: 'btn btn-md btn-danger'
 
 

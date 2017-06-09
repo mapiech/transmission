@@ -7,7 +7,7 @@
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .form-inputs
         - resource.email = Congregation.guess_to_sign_in(request.remote_ip).try(:email)
-        = f.input :email, collection: Congregation.pluck(:name, :email), as: :radio_buttons, required: false, label: 'Nazwa Zboru'
+        = f.input :email, collection: Congregation.order(:name).pluck(:name, :email), as: :radio_buttons, required: false, label: 'Nazwa Zboru'
         = f.input :password, required: false, autofocus: true, input_html: { style: 'width: 80px;' }
 
         .row.form-actions.text-center
