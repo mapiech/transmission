@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606224313) do
+ActiveRecord::Schema.define(version: 20170609174921) do
 
   create_table "admins", force: :cascade do |t|
     t.string "full_name"
@@ -49,6 +49,21 @@ ActiveRecord::Schema.define(version: 20170606224313) do
     t.integer "default_day"
     t.integer "default_weekend_time"
     t.index ["email"], name: "index_congregations_on_email", unique: true
+  end
+
+  create_table "cron_entries", force: :cascade do |t|
+    t.integer "cron_wrapper_id"
+    t.string "action_label"
+    t.string "day_label"
+    t.string "hour_label"
+    t.string "minute_label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cron_wrappers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "phone_key_maps", force: :cascade do |t|

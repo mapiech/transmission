@@ -7,3 +7,8 @@
   = link_to admin_users_path do
     = glyph('user')
     Bracia/Siostry
+
+%li{ class: (@menu == :cron_wrappers) ? 'active' : nil }
+  = link_to admin_cron_wrappers_path do
+    = glyph('retweet')
+    Cron

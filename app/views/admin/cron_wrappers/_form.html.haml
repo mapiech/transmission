@@ -1,0 +1,14 @@
+
+
+= simple_form_for [:admin, @cron_wrapper], url: admin_cron_wrappers_path do |f|
+  %h4 Cron
+  = f.simple_fields_for :cron_entries do |cron_entry|
+    = render 'cron_entry_fields', f: cron_entry
+
+  .cron-links.links.clearfix
+    = link_to_add_association f, :cron_entries, class: 'btn btn-primary btn-xs' do
+      = glyph('plus')
+      Dodaj
+
+  .text-center
+    = f.button :submit, 'Zapisz', class: 'btn btn-primary btn-md'

@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require 'cable'
+//= require cocoon
 //= require_tree ./channels
 //= require_tree ./lib
 //= require_tree ./app

@@ -1,12 +1,23 @@
-require 'serwersms'
+require 'mprofi_api_client'
 
 class SmsWrapper
+
+  API_TOKEN = ENV['SMS_TOKEN']
 
   class << self
 
     def send_message(number, message)
-      api = Serwersms.new('sala.wloclawek','48kdieQP(&#LDaies1')
-      api.messages.sendSms(number, message, 'INFORMACJA', {})
+      connector = MprofiApiClient::Connector.new(API_TOKEN)
+      begin
+        connector.add_message(number, message,)
+        connector.send
+      rescue MprofiAuthError
+        Airbrake.notify("MprofiAuthError")
+        false
+      rescue MprofiConnectionError
+        Airbrake.notify("MprofiConnectionError")
+        false
+      end
     end
 
   end

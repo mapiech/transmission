@@ -18,6 +18,10 @@ en:
         password: Hasło
         phone_number: Numer Telefonu
         congregation_id: Zbór
+        action_label: Akcja
+        day_label: Dzień
+        hour_label: Godzina
+        minute_label: Minuta
       user:
         admin: Admin Transmisji
         allow_join_to_any: Dostęp Do Wszystkich Zborów
@@ -32,6 +36,8 @@ en:
       phone_transmission:
         internal_phone_number: Wewnętrzny Nr Telefonu
         sip_phone_number: Publiczny Nr Telefonu
+
+
 
 
     # Examples

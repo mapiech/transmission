@@ -1,0 +1,12 @@
+.row.nested-fields.clearfix.cron-nested-fields
+  .col-xs-12.col-sm-3
+    = f.input :action_label, collection: [ ['Uruchom Komputer', 'boot'], ['Wyłącz Komputer', 'shutdown'] ]
+  .col-xs-12.col-sm-3
+    = f.input :day_label, collection: [['Poniedziałek', 'monday'], ['Wtorek', 'tuesday'], ['Środa', 'wednesday'], ['Czwartek', 'thursday'], ['Piątek', 'friday'], ['Sobota', 'saturday'], ['Niedziela', 'sunday']], include_blank: false
+  .col-xs-5.col-sm-2
+    = f.input :hour_label, collection: (0..24).to_a, include_blank: false
+  .col-xs-5.col-sm-2
+    = f.input :minute_label, collection: ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55'].to_a, include_blank: false
+
+  .col-xs-2.col-sm-2
+    = link_to_remove_association glyph(:remove), f, title: 'Usuń'

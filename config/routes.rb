@@ -39,6 +39,8 @@ Rails.application.routes.draw do
       end
     end
     resources :users, path: 'bracia-siostry'
+
+    resource :cron_wrappers, path: 'cron'
   end
 
   namespace :asterisk do

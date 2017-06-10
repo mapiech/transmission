@@ -39,7 +39,8 @@ gem 'google-api-client', '~> 0.11'
 gem 'signet'
 gem 'font-awesome-sass'
 gem 'airbrake', '~> 6.1'
-gem 'serwersms'
+gem 'mprofi_api_client'
+gem 'cocoon'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
