@@ -49,6 +49,18 @@ h2 {
 
 }
 
+#beta {
+  float: left;
+  display: block;
+  background: #dedede;
+  color: red;
+  font-size: 12px;
+  padding: 2px;
+  border-radius: 1px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
 .checkbox-area {
   margin: 15px 0 15px 30px;
   padding: 10px 0;
@@ -327,5 +339,14 @@ ul.actions {
 
 .cron-links {
   margin: 10px;
+}
 
+#main-container {
+  position: relative;
+  #beta {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    color: red;
+  }
 }

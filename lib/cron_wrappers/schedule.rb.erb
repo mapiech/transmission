@@ -1,9 +1,14 @@
 set :chronic_options, hours24: true
 
-<% for cron in cron_entries do %>
+<% for cron in cron_entries_with_boot do %>
 <% if cron.action_label == 'shutdown' %>
 every :<%= cron.day_label%>, at: '<%= "#{cron.hour_label}:#{cron.minute_label}"%>' do
   command "sudo shutdown now"
+end
+<% end %>
+<% if cron.action_label == 'boot' %>
+every :<%= cron.day_label%>, at: '<%= "#{cron.hour_label}:#{cron.minute_label}"%>' do
+  command "sudo /home/salat/rtcwake <%= cron.boot_wait %>"
 end
 <% end %>
 <% end %>

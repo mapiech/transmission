@@ -11,9 +11,17 @@
   %table.table
     %tr
       %th Akcja
-      %th Szczegóły
+      %th Cron Execution
+      %th Action Execution
 
-    - @cron_wrapper.cron_entries.each do |cron_entry|
+    - @cron_wrapper.cron_entries_with_boot.each do |cron_entry|
       %tr
-        %td= cron_entry.action_name
-        %td= cron_entry.decorate.time
+        %td
+          = cron_entry.action_name
+        %td
+          = cron_entry.decorate.time
+        %td
+          - if cron_entry.action_label == 'boot'
+            = cron_entry.decorate.boot_time
+          - else
+            = cron_entry.decorate.time

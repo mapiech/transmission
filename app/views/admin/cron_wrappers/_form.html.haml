@@ -2,7 +2,7 @@
 
 = simple_form_for [:admin, @cron_wrapper], url: admin_cron_wrappers_path do |f|
   %h4 Cron
-  = f.simple_fields_for :cron_entries do |cron_entry|
+  = f.simple_fields_for :cron_entries, @cron_wrapper.sorted_cron_entries do |cron_entry|
     = render 'cron_entry_fields', f: cron_entry
 
   .cron-links.links.clearfix

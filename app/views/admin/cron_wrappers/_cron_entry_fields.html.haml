@@ -1,6 +1,6 @@
 .row.nested-fields.clearfix.cron-nested-fields
   .col-xs-12.col-sm-3
-    = f.input :action_label, collection: [ ['Uruchom Komputer', 'boot'], ['Wyłącz Komputer', 'shutdown'] ]
+    = f.input :action_label, collection: [ ['Wyłącz Komputer', 'shutdown'] ]
   .col-xs-12.col-sm-3
     = f.input :day_label, collection: [['Poniedziałek', 'monday'], ['Wtorek', 'tuesday'], ['Środa', 'wednesday'], ['Czwartek', 'thursday'], ['Piątek', 'friday'], ['Sobota', 'saturday'], ['Niedziela', 'sunday']], include_blank: false
   .col-xs-5.col-sm-2
