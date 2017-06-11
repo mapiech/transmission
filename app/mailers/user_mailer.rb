@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
     @user = User.find(user_id)
     @broadcast = Broadcast.find(broadcast_id)
 
-    mail(to: 'dom@marek-piechocki.pl',
+    mail(to: @user.email,
          subject: "Transmisja zebrania: #{@broadcast.day_label}")
   end
 
