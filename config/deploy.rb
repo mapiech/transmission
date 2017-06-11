@@ -83,10 +83,18 @@ namespace :deploy do
     end
   end
 
+  task :restart_asterisk_sync do
+    on roles(:app) do
+      execute "ruby #{current_path}/asterisk-sync/server-control.rb stop"
+      execute "ruby #{current_path}/asterisk-sync/server-control.rb start"
+    end
+  end
+
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
+  after  :finishing,    :restart_asterisk_sync
 end
 
 # ps aux | grep puma    # Get puma pid

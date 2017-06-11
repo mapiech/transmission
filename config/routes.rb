@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   namespace :congregation, path: 'zbór' do
     root to: 'transmission#index'
 
-    resources :users, path: 'bracia-siostry'
+    resources :users, path: 'bracia-siostry' do
+      member do
+        patch :sms
+      end
+    end
     get 'transmisja', to: 'transmission#index', as: :transmission
     get 'komentarze/:congregation_id', to: 'transmission#comments', as: :comments
     post 'mute/:caller_id', to: 'mute#mute', as: :mute

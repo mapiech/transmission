@@ -56,4 +56,10 @@ class User < ApplicationRecord
     { user_id: id, full_name: full_name, users_count: get_count, users_count_text: decorate.video_users_count_text }
   end
 
+  def send_transmission_number!
+    if phone.phone_number.present?
+      SmsWrapper.send_message(phone.phone_number, "Nr transmisji: #{congregation.phone_transmission.sip_phone_number}. Pozdrawiają bracia z nagłośnienia.")
+    end
+  end
+
 end

@@ -42,6 +42,12 @@ class Congregation::UsersController < Congregation::BaseController
     end
   end
 
+  def sms
+    @user = current_congregation.users.find(params[:id])
+    @user.send_transmission_number!
+    redirect_to congregation_users_path, notice: 'Wysłano SMS.'
+  end
+
   protected
 
   def users_attributes
