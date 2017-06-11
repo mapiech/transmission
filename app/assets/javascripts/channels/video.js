@@ -74,6 +74,14 @@ var Video = {
         });
 
 
+        $(document).on('turbolinks:click', function(){
+
+            if($('#video-transmission').length > 0) {
+
+                $('#video-preview-wrapper').hide();
+            }
+
+        });
 
         $(document).on('turbolinks:load', function() {
 
@@ -90,6 +98,10 @@ var Video = {
                         $('.preparing-video-transmission').show();
                     } else {
                         $('#broadcast-users').show();
+
+                        if(YT.Player){
+                            _this.createPreview(initial_data['broadcast_id']);
+                        }
                     }
 
                     if(initial_data['users']){
@@ -101,10 +113,7 @@ var Video = {
                     if($('#youtube-refresh:visible').length == 0){
                         $('.generate-video-transmission').show();
                     }
-
                 }
-
-
 
             }
         })
@@ -163,11 +172,13 @@ var Video = {
         });
     },
 
+    player: null,
+
     createPreview: function(broadcast_id) {
-        var player;
+
         $('#video-preview-wrapper').show();
 
-        player = new YT.Player('video-preview', {
+        this.player = new YT.Player('video-preview', {
             videoId: broadcast_id, // YouTube Video ID
             width: 300,               // Player width (in px)
             height: 150,              // Player height (in px)
