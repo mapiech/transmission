@@ -85,8 +85,8 @@ namespace :deploy do
 
   task :restart_asterisk_sync do
     on roles(:app) do
-      execute "ruby #{current_path}/asterisk-sync/server-control.rb stop"
-      execute "ruby #{current_path}/asterisk-sync/server-control.rb start"
+      execute "/home/salat/.rvm/rubies/ruby-2.4.0/bin/ruby #{current_path}/asterisk-sync/server-control.rb stop"
+      execute "/home/salat/.rvm/rubies/ruby-2.4.0/bin/ruby #{current_path}/asterisk-sync/server-control.rb start"
     end
   end
 
