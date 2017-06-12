@@ -30,7 +30,7 @@ module Transmission
     }
 
     config.action_cable.url = ENV['ACTION_CABLE_URL']
-    config.action_cable.allowed_request_origins = %w( http://localhost http://lvh.me http://lt.me http://t.me http://transmisja.hopto.org http://176.241.73.134 http://192.168.0.15 )
+    config.action_cable.allowed_request_origins = %w( http://localhost http://lvh.me http://lt.me http://t.me http://transmisja.hopto.org http://192.168.0.15 )
 
   end
 
