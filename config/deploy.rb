@@ -1,5 +1,5 @@
 # Change these
-server '192.168.0.15', port: 2222, roles: [:web, :app, :db], primary: true
+server '176.241.73.134', port: 2222, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:mapiech/transmission.git'
 set :application,     'transmission'
