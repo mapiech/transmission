@@ -47,7 +47,7 @@ congregation = Congregation.new(
     name: 'Włocławek-Zazamcze',
     has_video_transmission: false,
     has_phone_transmission: true,
-    password: '4lp5',
+    password: '41p5',
     default_ip: '127.0.0.1',
     default_day: 4,
     default_weekend_time: 10,

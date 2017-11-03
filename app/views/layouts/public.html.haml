@@ -14,6 +14,7 @@
     = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"
   = stylesheet_link_tag "public", media: "all"
   = javascript_include_tag "public", 'data-turbolinks-track' => 'reload'
+  = render 'shared/favicon'
 
   %body{ data: { transmission: current_congregation.try(:phone_transmission).try(:internal_phone_number) } }
     %nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse(role="navigation")
