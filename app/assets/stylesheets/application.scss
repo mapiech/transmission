@@ -208,10 +208,28 @@ h2 {
   }
 }
 
+#obs-section {
+
+  min-height: 35px;
+  margin: 0 0 15px 0;
+
+  .obs-scene-switch {
+    margin: 0 4px 0 0;
+  }
+
+  .streaming-status {
+    padding-top: 3px;
+    float: right;
+  }
+
+  .streaming-info {
+    font-weight: bold;
+  }
+}
+
 #video-transmission {
 
   position: relative;
-
 
 
   p.preparing-video-transmission-info {
