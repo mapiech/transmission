@@ -127,6 +127,9 @@ var Users = {
 
     destroy: function(data) {
         $('#phone-transmission-user-'+data.user_id).remove();
+        if(this.unmutedUserId = data.user_id) {
+            this.muted(data);
+        };
     },
 
     muted: function(data) {
@@ -135,8 +138,11 @@ var Users = {
             $('.unmute').show();
             $('.admin-play').show();
             modal.modal('hide');
+            this.unmutedUserId = false;
         }
     },
+
+    unmutedUserId: false,
 
     unmuted: function(data) {
         if(!data.admin) {
@@ -144,6 +150,7 @@ var Users = {
             modal.find('.modal-body').html($.tmpl(this.muteAreaTemplate, data));
             $('.admin-play').hide();
             modal.modal('show');
+            this.unmutedUserId = data.user_id;
         }
     },
 
