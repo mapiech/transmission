@@ -4394,4 +4394,3 @@ var OBSWebSocket =
 
         /***/ })
     /******/ ]);
-//# sourceMappingURL=obs-websocket.js.map
