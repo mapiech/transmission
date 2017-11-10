@@ -43,8 +43,8 @@ gem 'mprofi_api_client'
 gem 'cocoon'
 gem 'execjs'
 gem 'therubyracer'
-gem 'sprockets', '>=3.0.0.beta'
-gem 'sprockets-es6'
+gem "sprockets", "~> 4.x"
+gem "babel-schmooze-sprockets"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
