@@ -41,6 +41,8 @@ gem 'font-awesome-sass'
 gem 'airbrake', '~> 6.1'
 gem 'mprofi_api_client'
 gem 'cocoon'
+gem 'execjs'
+gem 'therubyracer'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
