@@ -1,4 +1,4 @@
-amodule YoutubeWrapper
+module YoutubeWrapper
 
   class BroadcastGenerator
 
