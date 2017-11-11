@@ -13,7 +13,11 @@
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"
     = stylesheet_link_tag "application", media: "all"
-    = javascript_include_tag "application", 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag "application", "data-turbolinks-track" => "reload"
+
+    %script{ type: 'text/javascript', src: asset_path('es6-src/lib/obs-websocket.es6'), "data-turbolinks-track" => "reload" }
+    %script{ type: 'text/javascript', src: asset_path('es6-src/app/obs.es6'), "data-turbolinks-track" => "reload" }
+
     = render 'shared/favicon'
 
   %body

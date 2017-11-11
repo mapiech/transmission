@@ -18,7 +18,6 @@
 //= require cocoon
 //= require_tree ./channels
 //= require_tree ./lib
-//= require_tree ./es6-dist/lib
 //= require_tree ./app
-//= require_tree ./es6-dist/app
+
 
