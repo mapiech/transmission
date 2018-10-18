@@ -9,9 +9,9 @@ class User < ApplicationRecord
   end
 
   belongs_to :congregation
-  has_one :phone
+  has_one :phone, dependent: destroy
 
-  has_many :broadcast_users
+  has_many :broadcast_users, dependent: destroy
   has_many :broadcasts
 
   scope :with_email, ->() { where.not(email: '') }

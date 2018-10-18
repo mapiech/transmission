@@ -9,7 +9,7 @@
       .modal-body
         <input type="hidden" name="broadcast[user_ids][]" value />
         %ul#form-brodcast-user-list
-          - current_congregation.users.with_email.each do |user|
+          - current_congregation.users.with_email.order(:full_name).each do |user|
             %li
               %span.checkbox
                 = label_tag "broadcast_user_ids_#{user.id}" do
