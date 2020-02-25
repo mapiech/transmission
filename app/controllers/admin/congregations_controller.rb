@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class Admin::CongregationsController < Admin::BaseController
 
   before_action -> { set_menu(:congregations) }
@@ -81,6 +83,14 @@ class Admin::CongregationsController < Admin::BaseController
     rescue
       redirect_to admin_congregations_path, alert: "Nie udało się zresetować transmisji."
     end
+  end
+
+  def reset_phone_sync
+    begin
+      FileUtils.rm(File.join(Rails.root, 'asterisk-sync', 'server.rb.pid'))
+    rescue
+    end
+    redirect_to admin_congregations_path, notice: "Restartuję Synchronizację połączeń."    
   end
 
   protected

@@ -7,6 +7,10 @@
       = glyph(:plus)
       Dodaj
 
+    = link_to admin_reset_phone_sync_path, class: 'btn btn-danger btn-md ml-15 do
+      %span.fa.fa-sync
+      Zresetuj Synchronizację
+
     = link_to omniauth_url(:congregation), class: 'btn btn-social btn-google btn-md btn-social ml-15' do
       %span.fa.fa-google
       Odśwież Dostęp Do Youtube

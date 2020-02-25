@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   namespace :admin, path: 'admin' do
     root to: 'congregations#index'
+    get 'reset-sync', to: 'congregations#reset_phone_sync', as: :reset_phone_sync
     resources :congregations, path: 'zbory' do
       member do
         delete :reset_stream
