@@ -1,6 +1,6 @@
 class SessionsController < Devise::SessionsController
 
-  prepend_before_action :only_local_ips_or_admin!
+  #prepend_before_action :only_local_ips_or_admin!
 
   protected
 
