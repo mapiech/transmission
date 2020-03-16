@@ -26,7 +26,7 @@ module YoutubeWrapper
     def initialize(refresh_token, options = {})
 
       self.refresh_token = refresh_token
-      puts refresh_token
+
       if options[:new_broadcast]
         @broadcast_object = service.insert_live_broadcast('id,snippet,status,contentDetails', options[:new_broadcast])
       end

@@ -109,7 +109,7 @@ module YoutubeWrapper
       end
     end
 
-      def next_loop(seconds = 10)
+      def next_loop(seconds = 25)
         BroadcastGenerator.delay_for(seconds.seconds, retry: false).generate(congregation_id)
       end
 

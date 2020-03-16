@@ -27,7 +27,7 @@ var PageReloader = {
         if($('.reload-page').length > 0) {
             _this.timer = setTimeout(function() {
                 _this.reload_with_timer();
-            }, 10000);
+            }, 15000);
         }
     },
 

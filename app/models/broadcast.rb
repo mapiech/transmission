@@ -99,10 +99,20 @@ class Broadcast < ApplicationRecord
     self.save
   end
 
+  # auto switch broadcast from live to complete
   def validate_broadcast!
-    if broadcast_service.status?('complete')
+
+    # we can't check it each time when user open transmission page
+    # it generates too many api calls
+
+    broadcast_status = Rails.cache.fetch("broadcast_status_#{id}", expires_in: 3.hours) do
+      broadcast_service.status
+    end
+
+    if broadcast_status == 'complete'
       complete!
     end
+
   end
 
   def user_has_access?(user_id)
