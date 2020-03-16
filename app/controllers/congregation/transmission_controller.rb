@@ -10,6 +10,8 @@ class Congregation::TransmissionController < Congregation::BaseController
       end
     rescue Signet::AuthorizationError
       @google_auth_error = true
+    rescue
+      @video_transmission_not_available = true
     end
   end
 

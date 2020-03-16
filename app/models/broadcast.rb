@@ -99,6 +99,10 @@ class Broadcast < ApplicationRecord
     self.save
   end
 
+  def direct_url
+    "https://www.youtube.com/watch?v=#{broadcast_id}"
+  end
+
   # auto switch broadcast from live to complete
   def validate_broadcast!
 

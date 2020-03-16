@@ -32,45 +32,58 @@
 
         #obs-section
 
-        #youtube-refresh.alert.alert-danger{ style: @google_auth_error ? '' : 'display: none;' }
-          <button name="button" type="button" class="close">×</button>
-          %p.text-center
-            Aby korzystać z transmisji wideo musisz odświeżyć sesję Youtube.
-            %br
-            Możesz użyć tylko konta #{ENV['GOOGLE_DEFAULT_EMAIL']}
-          %p.text-center
-            = link_to omniauth_url(:congregation), class: 'btn btn-social btn-google btn-md btn-social' do
-              %span.fa.fa-google
-              Odśwież Dostęp Do Youtube
-
-        #video-transmission{ data: { congregation: current_congregation.id, initial: Broadcast.initial_data(current_congregation.id).to_json } }
-          .text-center
-            = link_to congregation_broadcasts_path, method: :post, class: 'btn btn-primary generate-video-transmission', remote: true, style: 'display: none;' do
-              = glyph(:tasks)
-              Stwórz nową transmisję
-
-            .preparing-video-transmission{ style: 'display: none;' }
-              = image_tag 'gears.gif', class: 'gears', height: 100
-              %p.preparing-video-transmission-info
-                Przygotowanie transmisji może potrwać do 3 minut. Poczekaj cierpliwie. Upewnij się, że w OBS jest włączony streaming.
-                Jeżeli transmisja nie wystartuje, ustaw wszystko ręcznie na Youtube i wyślij link emailem.
-
-          #video-preview-wrapper{ style: 'display: none;' }
-            .overlay
-              = link_to '#', class: 'remove-video-preview text-danger', title: 'Usuń podgląd' do
-                = glyph('remove-circle')
-            #video-preview
+        - unless @video_transmission_not_available
+          #youtube-refresh.alert.alert-danger{ style: @google_auth_error ? '' : 'display: none;' }
+            <button name="button" type="button" class="close">×</button>
             %p.text-center
-              %span Podgląd ma około 20 sekund opóźnienia
+              Aby korzystać z transmisji wideo musisz odświeżyć sesję Youtube.
+              %br
+              Możesz użyć tylko konta #{ENV['GOOGLE_DEFAULT_EMAIL']}
+            %p.text-center
+              = link_to omniauth_url(:congregation), class: 'btn btn-social btn-google btn-md btn-social' do
+                %span.fa.fa-google
+                Odśwież Dostęp Do Youtube
 
-          %p.message.text-center.alert.alert-danger{ style: 'display: none;' }
+          #video-transmission{ data: { congregation: current_congregation.id, initial: Broadcast.initial_data(current_congregation.id).to_json } }
+            .text-center
+              = link_to congregation_broadcasts_path, method: :post, class: 'btn btn-primary generate-video-transmission', remote: true, style: 'display: none;' do
+                = glyph(:tasks)
+                Stwórz nową transmisję
+
+              .preparing-video-transmission{ style: 'display: none;' }
+                = image_tag 'gears.gif', class: 'gears', height: 100
+                %p.preparing-video-transmission-info
+                  Przygotowanie transmisji może potrwać do 3 minut. Poczekaj cierpliwie. Upewnij się, że w OBS jest włączony streaming.
+                  Jeżeli transmisja nie wystartuje, ustaw wszystko ręcznie na Youtube i wyślij link emailem.
+
+            #video-preview-wrapper{ style: 'display: none;' }
+              .overlay
+                = link_to '#', class: 'remove-video-preview text-danger', title: 'Usuń podgląd' do
+                  = glyph('remove-circle')
+              #video-preview
+              %p.text-center
+                %span Podgląd ma około 20 sekund opóźnienia.
+              %p#direct-url.text-center
 
 
-          #broadcast-users{ style: 'display: none;' }
-            %ul#video-users.clearfix
+            %p.message.text-center.alert.alert-danger{ style: 'display: none;' }
 
 
-            .clerfix.text-center
-              = link_to edit_congregation_broadcast_path(id: 'id'), class: 'btn btn-primary manage-users' do
-                = glyph(:user)
-                Udostępnij
+            #broadcast-users{ style: 'display: none;' }
+              %ul#video-users.clearfix
+
+
+              .clerfix.text-center
+                = link_to edit_congregation_broadcast_path(id: 'id'), class: 'btn btn-primary manage-users' do
+                  = glyph(:user)
+                  Udostępnij
+        - else
+          %p
+            YouTubeApi jest niedostępne.
+            - last_broadcast = Broadcast.where(congregation_id: current_congregation.id).last
+            - if last_broadcast.present? and last_broadcast.broadcast_id.present?
+              %br
+              Być może bieżąca transmisja jest dostępna pod tym adresem:
+              %br
+              = link_to last_broadcast.direct_url, last_broadcast.direct_url, target: '_blank'
+

@@ -199,6 +199,15 @@ var Video = {
                 }
             }
         });
+
+        direct_url = "https://www.youtube.com/watch?v=" + broadcast_id;
+        direct_link_text = '<span>';
+        direct_link_text += 'Bezpośredni link (do użycia w awaryjnych sytuacjach): ';
+        direct_link_text += '<br/>';
+        direct_link_text += '<a href="' + direct_url + '" target="_blank">' + direct_url + '</a>';
+        direct_link_text += '</span>';
+
+        $('#direct-url').html(direct_link_text)
     }
 
 }
