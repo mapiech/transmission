@@ -1,6 +1,6 @@
 class Congregation::BaseController < ApplicationController
 
-  #before_action :only_local_ips_or_admin!
+  before_action :only_local_ips_or_admin!
   before_action :authenticate_congregation!
 
   layout 'application'
