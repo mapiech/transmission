@@ -16,7 +16,9 @@
             = link_to congregation_kick_all_path(current_congregation.internal_phone_number), class: 'soft-delete soft-delete-remote pull-right text-danger',
                data: { message: 'Ta akcja usunie wszystkich z transmisji.' }, title: 'Ta akcja usunie wszystkich z transmisji.' do
               = glyph(:trash)
-
+        %p
+          Liczba Obecnych:
+          %span#phone-total 0
 
         %ul#phone-transmission.private.clearfix{ data: { initial: AsteriskWrapper::Channel.initial_data(current_congregation.internal_phone_number).to_json, transmission: current_congregation.try(:phone_transmission).try(:internal_phone_number) }}
 
@@ -70,6 +72,10 @@
 
 
             #broadcast-users{ style: 'display: none;' }
+              %p
+                Liczba Obecnych:
+                %span#video-total 0
+
               %ul#video-users.clearfix
 
 

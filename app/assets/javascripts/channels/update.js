@@ -5,6 +5,7 @@ $(document).on('turbolinks:load', function() {
         App.update = App.cable.subscriptions.create( { channel: 'UpdateChannel', transmission: $('#phone-transmission').data('transmission') }, {
            received: function(data) {
              Users.process(data);
+             Users.calculatePhoneTotal()
            }
         });
 
@@ -57,8 +58,9 @@ var Users = {
                         if (initial_data['unmuted']) {
                             _this.unmuted(initial_data['unmuted']);
                         }
-                    }
 
+                        _this.calculatePhoneTotal()
+                    }
 
             }
 
@@ -156,6 +158,16 @@ var Users = {
 
     comment: function(data) {
         Comments.process(data)
+    },
+
+    calculatePhoneTotal: function() {
+        try {
+            var total = 0;
+            $('#phone-transmission .users-count').each(function(){
+                total += parseInt($(this).data('users-count'));
+            });
+            $('#phone-total').text(total)
+        } catch(e) {}
     }
 
 }

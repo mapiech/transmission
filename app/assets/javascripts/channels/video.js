@@ -5,6 +5,7 @@ $(document).on('turbolinks:load', function() {
         App.video = App.cable.subscriptions.create( { channel: 'VideoChannel', congregation: $('#video-transmission').data('congregation') }, {
             received: function(data) {
                 Video.process(data);
+                Video.calculateVideoTotal();
             }
         });
 
@@ -170,6 +171,7 @@ var Video = {
         $.each(users, function (index, user) {
             $('#video-users').append($.tmpl(_this.videoUserTemplate, user));
         });
+        _this.calculateVideoTotal()
     },
 
     player: null,
@@ -208,7 +210,19 @@ var Video = {
         direct_link_text += '</span>';
 
         $('#direct-url').html(direct_link_text)
+    },
+
+    calculateVideoTotal: function() {
+        try {
+            var total = 0;
+            $('#broadcast-users .users-count').each(function(){
+                total += parseInt($(this).data('users-count'));
+            });
+            $('#video-total').text(total)
+        } catch(e) {}
     }
+
+
 
 }
 
