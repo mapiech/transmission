@@ -216,7 +216,7 @@ var Video = {
         try {
             var total = 0;
             $('#broadcast-users .users-count').each(function(){
-                total += parseInt($(this).data('users-count'));
+                total += (parseInt($(this).data('users-count')) || 0);
             });
             $('#video-total').text(total)
         } catch(e) {}

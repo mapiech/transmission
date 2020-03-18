@@ -164,7 +164,7 @@ var Users = {
         try {
             var total = 0;
             $('#phone-transmission .users-count').each(function(){
-                total += parseInt($(this).data('users-count'));
+                total += (parseInt($(this).data('users-count')) || 0);
             });
             $('#phone-total').text(total)
         } catch(e) {}
