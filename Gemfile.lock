@@ -240,7 +240,7 @@ GEM
     os (0.9.6)
     pg (0.20.0)
     public_suffix (2.0.5)
-    puma (3.8.2)
+    puma (3.12.6)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
@@ -419,7 +419,7 @@ DEPENDENCIES
   net-telnet
   omniauth-google-oauth2
   pg
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.1)
   redis (~> 3.0)
   redis-rails
